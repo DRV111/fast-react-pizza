@@ -37,7 +37,7 @@ function Cart() {
       <h2 className="mt-7 text-lg font-semibold">Your cart, %NAME%</h2>
       <ul className="divie-stone-200 mt-3 divide-y border-b">
         {cart.map((item) => {
-          return <CartItem item={item} key={item.key} />;
+          return <CartItem item={item} key={item.pizzaId} />;
         })}
       </ul>
 
@@ -45,7 +45,7 @@ function Cart() {
         <Button to="/order/new" type="primary">
           Order pizzas
         </Button>
-        <button>Clear cart</button>
+        <Button type="secondary">Clear cart</Button>
       </div>
     </div>
   );
