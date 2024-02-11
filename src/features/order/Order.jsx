@@ -1,5 +1,6 @@
 // Test ID: IIDSAT
 
+import OrderItem from "../order/OrderItem";
 import { useLoaderData } from "react-router-dom";
 import { getOrder } from "../../services/apiRestaurant";
 import {
@@ -50,6 +51,12 @@ function Order() {
           (Estimated delivery: {formatDate(estimatedDelivery)})
         </p>
       </div>
+
+      <ul className="divide-y divide-stone-200 border-b border-t">
+        {cart.map((item) => {
+          return <OrderItem key={item.id} item={item} />;
+        })}
+      </ul>
 
       <div className="space-y-2 bg-stone-200 px-6 py-5">
         <p className="text-sm font-medium text-stone-600">
