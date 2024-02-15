@@ -2,8 +2,9 @@ import { Form, redirect, useActionData, useNavigation } from "react-router-dom";
 import { createOrder } from "../../services/apiRestaurant";
 import Button from "../../ui/Button";
 import { useSelector } from "react-redux";
-import { getCart } from "../cart/cartSlice";
+import { clearCart, getCart } from "../cart/cartSlice";
 import EmptyCart from "../cart/EmptyCart";
+import store from "../../store";
 
 // https://uibakery.io/regex-library/phone-number
 const isValidPhone = (str) =>
@@ -108,6 +109,10 @@ export async function action({ request }) {
   //if no error, create new order and redirect
 
   const newOrder = await createOrder(order);
+
+  // DO NOT OVERUSE THIS!!!! HAS EFFECTS ON PERFORMANCE
+  store.dispatch(clearCart());
+
   return redirect(`/order/${newOrder.id}`);
 }
 
